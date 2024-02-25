@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 # Create your models here.
@@ -44,3 +45,7 @@ class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.title
+    # def image_tag(self):
+    #     return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+    #
+    # image_tag.short_description = 'Image'

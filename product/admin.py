@@ -15,8 +15,8 @@ admin.site.register(Category, CategoryAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
     # fields=['title','status']
-    # list_display = ['title', 'image_tag', 'status']
-    list_display = ['title', 'status']
+    list_display = ['title', 'image', 'status']
+    # list_display = ['title', 'status']
     list_filter = ['status', 'category']
     # readonly_fields = ('image_tag',)
     # inlines=[ProductImagesInline]
