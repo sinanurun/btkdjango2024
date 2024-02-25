@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from product.models import Category, Product
+from product.models import Category, Product, Images
+
+
+class ProductImagesInline(admin.TabularInline):
+    model = Images
+    extra = 5
+    readonly_fields = ['image_tag']
 
 
 # Register your models here.
@@ -19,7 +25,12 @@ class ProductAdmin(admin.ModelAdmin):
     # list_display = ['title', 'status']
     list_filter = ['status', 'category']
     # readonly_fields = ('image_tag',)
-    # inlines=[ProductImagesInline]
+    inlines=[ProductImagesInline]
     prepopulated_fields = {"slug": ("title",)}  # new
 
 admin.site.register(Product, ProductAdmin)
+
+class ImagesAdmin(admin.ModelAdmin):
+    list_display = ['title','product', 'image_tag']
+    readonly_fields = ['image_tag']
+admin.site.register(Images, ImagesAdmin)
