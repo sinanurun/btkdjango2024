@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 #     uygulama listesi
     "home.apps.HomeConfig", # "home" şeklinde de bir uygulamayı tanıtabiliriz
-
+    "product.apps.ProductConfig",
 ]
 
 MIDDLEWARE = [
