@@ -1,3 +1,4 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.safestring import mark_safe
@@ -36,8 +37,8 @@ class Product(models.Model):
     # price=models.DecimalField(max_digits=12,decimal_places=2,default=0)
     price = models.FloatField()
     amount = models.IntegerField(default=0)
-    # detail=RichTextUploadingField()
-    detail = models.TextField()
+    detail=RichTextUploadingField()
+    # detail = models.TextField()
     status = models.CharField(max_length=10, choices=STATUS, default='False')
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)

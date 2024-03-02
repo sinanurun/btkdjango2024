@@ -16,7 +16,10 @@ def index(request):
 
 
 def hakkimizda(request):
-    return HttpResponse("Hakkimizda")
+    setting = Setting.objects.get(pk=1)
+    context = {"setting": setting,
+               "page":"Hakkımızda"}
+    return render(request, 'aboutus.html',context)
 
 def iletisim(request):
     setting = Setting.objects.get(pk=1)
@@ -25,4 +28,7 @@ def iletisim(request):
     return render(request, 'contact.html',context)
 
 def referanslar(request):
-    return HttpResponse("Hakkimizda")
+    setting = Setting.objects.get(pk=1)
+    context = {"setting": setting,
+               "page":"Referanslar"}
+    return render(request, 'references.html',context)
