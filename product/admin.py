@@ -24,9 +24,10 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'image_tag', 'status']
     # list_display = ['title', 'status']
     list_filter = ['status', 'category']
-    # readonly_fields = ('image_tag',)
+    readonly_fields = ('image_tag',)
     inlines=[ProductImagesInline]
     prepopulated_fields = {"slug": ("title",)}  # new
+
 
 admin.site.register(Product, ProductAdmin)
 

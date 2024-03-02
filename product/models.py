@@ -49,6 +49,8 @@ class Product(models.Model):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
 #     urunler için resim galerisi oluşturmak için
+    def img_preview(self):  # new
+        return mark_safe(f'<img src = "{self.image.url}" width = "300"/>')
 class Images(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
