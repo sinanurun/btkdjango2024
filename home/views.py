@@ -21,7 +21,7 @@ def hakkimizda(request):
 def iletisim(request):
     setting = Setting.objects.get(pk=1)
     context = {"setting": setting,
-               "page":"iletisim"}
+               "page":"İletişim"}
     return render(request, 'contact.html',context)
 
 def referanslar(request):
