@@ -27,8 +27,8 @@ urlpatterns = [
     path('product/', include('product.urls')),
     # blog Sayfaları
     path("hakkimizda", home.views.hakkimizda, name="hakkimizda"),
-    # path("referanslar", home.views.referanslar, name="referanslar"),
-    # path("iletisim", home.views.iletisim, name="iletisim"),
+    path("referanslar", home.views.referanslar, name="referanslar"),
+    path("iletisim", home.views.iletisim, name="iletisim"),
 
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
