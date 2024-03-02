@@ -24,8 +24,5 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('product/', include('product.urls')),
     path('admin/', admin.site.urls),
-]
-# resimlerin veya static dosyaların admin tarafında gösterilmesi için
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
