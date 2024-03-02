@@ -11,11 +11,12 @@ def index(request):
     # return HttpResponse("%s na Hoşgeldiniz" %text)
     setting = Setting.objects.get(pk=1)
     slider = Product.objects.order_by('?')[:4]
-
+    trendy_product = Product.objects.order_by('?')[:8]
     context = {"text": text,
                "page":"home",
                "setting": setting,
-               "slider": slider}
+               "slider": slider,
+               "trendy_product":trendy_product}
     return render(request, 'index.html', context)
 
 

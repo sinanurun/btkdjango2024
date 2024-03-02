@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 #     eklenti listesi
     'ckeditor',
     'ckeditor_uploader',
+    'mptt',
 ]
 
 MIDDLEWARE = [
