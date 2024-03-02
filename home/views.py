@@ -16,3 +16,9 @@ def index(request):
 
 def hakkimizda(request):
     return HttpResponse("Hakkimizda")
+
+def iletisim(request):
+    return HttpResponse("Hakkimizda")
+
+def referanslar(request):
+    return HttpResponse("Hakkimizda")
