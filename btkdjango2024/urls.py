@@ -17,12 +17,19 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+import home
 from btkdjango2024 import settings
 
 urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
     path('product/', include('product.urls')),
+    # blog Sayfaları
+    path("hakkimizda", home.views.hakkimizda, name="hakkimizda"),
+    # path("referanslar", home.views.referanslar, name="referanslar"),
+    # path("iletisim", home.views.iletisim, name="iletisim"),
+
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

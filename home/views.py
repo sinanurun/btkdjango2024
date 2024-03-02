@@ -14,5 +14,5 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def detail(request, id):
-    return HttpResponse(id)
+def hakkimizda(request):
+    return HttpResponse("Hakkimizda")
