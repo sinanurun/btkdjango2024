@@ -1,7 +1,11 @@
 {% extends 'homebase.html' %}
-{% block title %} bizim ana sayfamız {%  endblock %}
-{% block description %} index description {% endblock %}
-{% block keywords %} index keywords {% endblock %}
+{% block title %} {{ setting.title}} {%  endblock %}
+{% block description %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords}} {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+{% endblock %}
+
 
 {% block sidebar %} {% include 'sidebar.html' %}  {% endblock %}
 {% block body %} {% include 'content.html' %}  {% endblock %}
