@@ -25,9 +25,6 @@
                                 <a href="" class="dropdown-item">Baby's Dresses</a>
                             </div>
                         </div>
-                        {% for kategori in category %}
-                        <a href="" class="nav-item nav-link">{{ kategori.title }}</a>
-                        {% endfor %}
 
                      {% load mptt_tags %}
                     {% recursetree category %}
