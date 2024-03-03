@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from home.forms import SearchForm
-from product.models import Category, Product
+from product.models import Category, Product, Images
 
 
 # Create your views here.
@@ -20,7 +20,8 @@ def productDetail(request,id,slug):
     urun = Product.objects.get(id=id)
     urun.reviewsCount = urun.reviewsCount + 1
     urun.save()
-    context = {"urun":urun}
+    images = Images.objects.filter(product_id=id)
+    context = {"urun":urun,"images":images}
     return render(request, 'urun_detay.html', context)
 
 
