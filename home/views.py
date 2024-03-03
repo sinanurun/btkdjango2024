@@ -1,8 +1,9 @@
-from django.http import HttpResponse
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from home.forms import ContactForm
-from home.models import Setting
+from home.models import Setting, ContactFormMessage
 from product.models import Product, Category
 
 
@@ -24,6 +25,21 @@ def hakkimizda(request):
     return render(request, 'aboutus.html',context)
 
 def iletisim(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        # print(form.cleaned_data['name'])
+        if form.is_valid():
+            data = ContactFormMessage()  # create relation with model
+            data.name = form.cleaned_data['name']  # get form input data
+            data.email = form.cleaned_data['email']
+            data.subject = form.cleaned_data['subject']
+            data.message = form.cleaned_data['message']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()  # save data to table
+            messages.success(request, "Your message has ben sent. Thank you for your message.")
+            return HttpResponseRedirect('/iletisim')
+
+
     form = ContactForm
     context = {"page":"İletişim","form":ContactForm}
     return render(request, 'contact.html',context)
