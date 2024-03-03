@@ -25,7 +25,27 @@
                                 <a href="" class="dropdown-item">Baby's Dresses</a>
                             </div>
                         </div>
-                        <a href="" class="nav-item nav-link">Shirts</a>
+                        {% for kategori in category %}
+                        <a href="" class="nav-item nav-link">{{ kategori.title }}</a>
+                        {% endfor %}
+
+                     {% load mptt_tags %}
+                    {% recursetree category %}
+                       {% if node.is_leaf_node %}
+                           <a href="/category/{{ node.id }}/{{ node.slug }}" class="nav-item nav-link">{{  node.title }}</a>
+                           {% else %}
+                            <div class="nav-item dropdown">
+                            <a href="/category/{{ node.id }}/{{ node.slug }}" class="nav-link" data-toggle="dropdown">{{  node.title }} <i class="fa fa-angle-down float-right mt-1"></i></a>
+
+                                         <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                             <a href="/category/{{ node.id }}/{{ node.slug }}" class="nav-item nav-link">{{  node.title }}</a>
+                                <a href="/category/{{ children.id }}/{{ children.slug }}" class="dropdown-item">{{ children}}</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endrecursetree %}
+
+
                         <a href="" class="nav-item nav-link">Jeans</a>
                         <a href="" class="nav-item nav-link">Swimwear</a>
                         <a href="" class="nav-item nav-link">Sleepwear</a>
