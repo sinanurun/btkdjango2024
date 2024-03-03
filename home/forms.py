@@ -1,9 +1,9 @@
 from django.forms import ModelForm, TextInput, Textarea, forms
-
+from django import forms
 from home.models import ContactFormMessage
 
 class SearchForm(forms.Form):
-    query = forms.CharFields()
+    query = forms.CharField(max_length=100)
 
 
 class ContactForm(ModelForm):
