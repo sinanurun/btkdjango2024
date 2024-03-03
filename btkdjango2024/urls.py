@@ -18,19 +18,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-import home
-import product
+import home.views as home_views
+import product.views as product_views
 from btkdjango2024 import settings
 
 urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
+    path('search/', product_views.search, name='search'),
     path('product/', include('product.urls')),
-    path("category/<int:id>/<slug:slug>", product.views.categoryProducts, name="categoryProducts"),
+    path("category/<int:id>/<slug:slug>", product_views.categoryProducts, name="categoryProducts"),
     # blog Sayfaları
-    path("hakkimizda", home.views.hakkimizda, name="hakkimizda"),
-    path("referanslar", home.views.referanslar, name="referanslar"),
-    path("iletisim", home.views.iletisim, name="iletisim"),
+    path("hakkimizda", home_views.hakkimizda, name="hakkimizda"),
+    path("referanslar", home_views.referanslar, name="referanslar"),
+    path("iletisim", home_views.iletisim, name="iletisim"),
 
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),

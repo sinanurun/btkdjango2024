@@ -1,6 +1,9 @@
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, forms
 
 from home.models import ContactFormMessage
+
+class SearchForm(forms.Form):
+    query = forms.CharFields()
 
 
 class ContactForm(ModelForm):
