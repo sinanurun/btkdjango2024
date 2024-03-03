@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 import home
+import product
 from btkdjango2024 import settings
 
 urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
     path('product/', include('product.urls')),
+    path("category/<int:id>/<slug:slug>", product.views.categoryProducts, name="categoryProducts"),
     # blog Sayfaları
     path("hakkimizda", home.views.hakkimizda, name="hakkimizda"),
     path("referanslar", home.views.referanslar, name="referanslar"),
