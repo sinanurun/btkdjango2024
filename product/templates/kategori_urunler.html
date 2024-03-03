@@ -1,7 +1,7 @@
 {% extends 'homebase.html' %}
-{% block title %} {{ category.title }}{% endblock %}
-{% block description %} index description {% endblock %}
-{% block keywords %} index keywords {% endblock %}
+{% block title %} {{ urunKategori.title }}{% endblock %}
+{% block description %} {{ urunKategori.description }} {% endblock %}
+{% block keywords %} {{ urunKategori.keywords }} {% endblock %}
 
 <!-- aşağı kısım sonradan eklenecek -->
 {% block head %} <link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url }}" >  {% endblock %}
@@ -175,9 +175,7 @@
                             </div>
                         </div>
                     </div>
-
                     {%  for urun in urunler %}
-
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
