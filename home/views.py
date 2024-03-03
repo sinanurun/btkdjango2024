@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from home.forms import ContactForm
 from home.models import Setting
 from product.models import Product, Category
 
@@ -23,7 +24,8 @@ def hakkimizda(request):
     return render(request, 'aboutus.html',context)
 
 def iletisim(request):
-    context = {"page":"İletişim"}
+    form = ContactForm
+    context = {"page":"İletişim","form":ContactForm}
     return render(request, 'contact.html',context)
 
 def referanslar(request):

@@ -26,6 +26,10 @@
         </div>
         <div class="row px-xl-5">
             <div class="col-lg-7 mb-5">
+
+                {% csrf_token %}
+                {{ form.name }}
+                {{ form.subject }}
                 <div class="contact-form">
                     <div id="success"></div>
                     <form name="sentMessage" id="contactForm" novalidate="novalidate">
