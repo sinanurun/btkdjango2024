@@ -3,7 +3,7 @@ from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from user.forms import LoginForm
+from user.forms import LoginForm, RegisterForm
 
 
 # Create your views here.
@@ -27,9 +27,8 @@ def user_login(request):
                 return HttpResponseRedirect('/user/login')
 
     form = LoginForm
-    context = {"form":form}
+    context = {"form": form}
     return render(request, "login.html", context)
-
 
 
 def user_logout(request):
@@ -37,6 +36,21 @@ def user_logout(request):
     return HttpResponseRedirect("/")
 
 
-
 def user_register(request):
-    pass
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username'].lower()
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request,"Hesabınız Oluşturuldu")
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request, form.errors)
+            return HttpResponseRedirect('/user/register')
+
+    form = RegisterForm
+    context = {"form": form}
+    return render(request, "register.html", context)
