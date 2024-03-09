@@ -85,6 +85,7 @@ def user_update(request):
         context = {"user_form": user_form, "profile_form": profile_form}
         return render(request, 'user_update.html', context)
 
+
 @login_required(login_url='/user/login')
 def user_password(request):
     if request.method == 'POST':
@@ -102,10 +103,18 @@ def user_password(request):
         return render(request, 'user_password_update.html', {'form': form})
 
 
+@login_required(login_url='/user/login')
 def user_comments(request):
     comments = Comment.objects.filter(user=request.user)
     return render(request, 'user_comments.html', {'comments': comments})
 
 
-def user_deletecomment(request):
-    return None
+@login_required(login_url='/user/login')
+def user_deletecomment(request, id):
+    current_user = request.user
+    try:
+        Comment.objects.filter(id=id, user_id=current_user.id).delete()
+        messages.success(request, 'Mesajınız Başarıyla Silinmiştir')
+    except Exception:
+        messages.warning(request, 'Mesajınız Silinememiştir {}'.format(Exception))
+    return HttpResponseRedirect('/user/mycomments')
