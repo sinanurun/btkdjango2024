@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from user.forms import LoginForm, RegisterForm
+from user.models import UserProfile
 
 
 # Create your views here.
@@ -45,6 +46,11 @@ def user_register(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
+            # tetikleme olmadan manuel profil oluşturma
+            # current_user = user
+            # data = UserProfile()
+            # data.user_id = current_user.id
+            # data.save()
             messages.success(request,"Hesabınız Oluşturuldu")
             return HttpResponseRedirect('/')
         else:
