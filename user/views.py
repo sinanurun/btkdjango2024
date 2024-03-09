@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def user_profile(request):
-    return HttpResponse("<h1>User Profile</h1>")
+    return HttpResponse("<h1>User Profbnbile</h1>")
 
 
 def user_login(request):
