@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -64,3 +65,11 @@ def user_register(request):
     form = RegisterForm
     context = {"form": form}
     return render(request, "register.html", context)
+
+@login_required(login_url='/user/login')  # Check login
+def user_update(request):
+    return None
+
+
+def user_password(request):
+    return None
