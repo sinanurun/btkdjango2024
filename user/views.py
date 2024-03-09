@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from user.forms import LoginForm, RegisterForm, UserProfileForm
+from user.forms import LoginForm, RegisterForm, UserProfileForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
 
 
@@ -66,9 +66,22 @@ def user_register(request):
     context = {"form": form}
     return render(request, "register.html", context)
 
+
 @login_required(login_url='/user/login')  # Check login
 def user_update(request):
-    return None
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, instance=request.user.userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Kullanıcı Bilgileri Başarıyla Güncellendi")
+            return HttpResponseRedirect('/user')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.userprofile)
+        context = {"user_form": user_form, "profile_form": profile_form}
+        return render(request, 'user_update.html', context)
 
 
 def user_password(request):
