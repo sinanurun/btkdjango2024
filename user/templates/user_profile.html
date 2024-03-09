@@ -28,6 +28,17 @@
             {% include 'user_panel.html' %}
 
 <div class="col-lg-9 table-responsive mb-5">
+
+    <div id="success">
+                             {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                    </div>
+
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                     <tr>
