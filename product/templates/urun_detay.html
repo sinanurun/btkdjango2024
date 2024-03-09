@@ -217,20 +217,20 @@
                                 {% for yorum in comments %}
 
 
-{#                                <div class="media mb-4">#}
-{#                                    <img src="{{ yorum.user.userprofile.image.url}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">#}
-{#                                    <div class="media-body">#}
-{#                                        <h6>{{ yorum.user.get_full_name}} <small> - <i>{{ yorum.create_at}}</i></small></h6>#}
-{#                                        <div class="text-primary mb-2">#}
-{#                                        {% with ''|center:yorum.rate as range %}#}
-{#{% for _ in range %}#}
-{# <i class="fas fa-star"></i>#}
-{#{% endfor %}#}
-{#{% endwith %}#}
-{#                                        </div>#}
+                                <div class="media mb-4">
+                                    <img src="{{ yorum.user.userprofile.image.url}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <div class="media-body">
+                                        <h6>{{ yorum.user.get_full_name}} <small> - <i>{{ yorum.create_at}}</i></small></h6>
+                                        <div class="text-primary mb-2">
+                                        {% with ''|center:yorum.rate as range %}
+{% for _ in range %}
+ <i class="fas fa-star"></i>
+{% endfor %}
+{% endwith %}
+                                        </div>
                                         <p>{{ yorum.comment }}</p>
-{#                                    </div>#}
-{#                                </div>#}
+                                    </div>
+                                </div>
                                 {% endfor %}
 
                             </div>

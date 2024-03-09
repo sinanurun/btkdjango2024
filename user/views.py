@@ -5,6 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+from product.models import Comment
 from user.forms import LoginForm, RegisterForm, UserProfileForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
 
@@ -99,3 +100,12 @@ def user_password(request):
     else:
         form = PasswordChangeForm(request.user)
         return render(request, 'user_password_update.html', {'form': form})
+
+
+def user_comments(request):
+    comments = Comment.objects.filter(user=request.user)
+    return render(request, 'user_comments.html', {'comments': comments})
+
+
+def user_deletecomment(request):
+    return None
