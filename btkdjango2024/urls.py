@@ -23,18 +23,18 @@ import product.views as product_views
 from btkdjango2024 import settings
 
 urlpatterns = [
-    path('', include('home.urls')),
-    path('home/', include('home.urls')),
-    path('search/', product_views.search, name='search'),
-    path('product/', include('product.urls')),
-    path('user/', include('user.urls')),
-    path("category/<int:id>/<slug:slug>", product_views.categoryProducts, name="categoryProducts"),
-    # blog Sayfaları
-    path("hakkimizda", home_views.hakkimizda, name="hakkimizda"),
-    path("referanslar", home_views.referanslar, name="referanslar"),
-    path("iletisim", home_views.iletisim, name="iletisim"),
+                  path('', include('home.urls')),
+                  path('home/', include('home.urls')),
+                  path('search/', product_views.search, name='search'),
+                  path('product/', include('product.urls')),
+                  path('order/', include('order.urls')),
+                  path('user/', include('user.urls')),
+                  path("category/<int:id>/<slug:slug>", product_views.categoryProducts, name="categoryProducts"),
+                  # blog Sayfaları
+                  path("hakkimizda", home_views.hakkimizda, name="hakkimizda"),
+                  path("referanslar", home_views.referanslar, name="referanslar"),
+                  path("iletisim", home_views.iletisim, name="iletisim"),
 
-    path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+                  path('admin/', admin.site.urls),
+                  path('ckeditor/', include('ckeditor_uploader.urls')),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
