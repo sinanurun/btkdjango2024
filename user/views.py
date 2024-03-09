@@ -3,13 +3,17 @@ from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from user.forms import LoginForm, RegisterForm
+from user.forms import LoginForm, RegisterForm, UserProfileForm
 from user.models import UserProfile
 
 
 # Create your views here.
 def user_profile(request):
-    return HttpResponse("<h1>User Profbnbile</h1>")
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    context = {"user": user,
+               "profile": profile}
+    return render(request, 'user_profile.html', context)
 
 
 def user_login(request):
@@ -51,7 +55,7 @@ def user_register(request):
             # data = UserProfile()
             # data.user_id = current_user.id
             # data.save()
-            messages.success(request,"Hesabınız Oluşturuldu")
+            messages.success(request, "Hesabınız Oluşturuldu")
             return HttpResponseRedirect('/')
         else:
             messages.warning(request, form.errors)
