@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 #     uygulama listesi
     "home.apps.HomeConfig", # "home" şeklinde de bir uygulamayı tanıtabiliriz
     "product.apps.ProductConfig",
+    'user.apps.UserConfig',
 #     eklenti listesi
     'ckeditor',
     'ckeditor_uploader',

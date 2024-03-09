@@ -12,19 +12,18 @@ def categoryProducts(request, id, slug):
     urunKategori = Category.objects.get(id=id)
     urunler = Product.objects.filter(category_id=id)
 
-
-    context = {"urunKategori":urunKategori,
-               "urunler":urunler}
+    context = {"urunKategori": urunKategori,
+               "urunler": urunler}
     return render(request, 'kategori_urunler.html', context)
 
 
-def productDetail(request,id,slug):
+def productDetail(request, id, slug):
     urun = Product.objects.get(id=id)
     urun.reviewsCount = urun.reviewsCount + 1
     urun.save()
     images = Images.objects.filter(product_id=id)
-
-    context = {"urun":urun,"images":images}
+    comments = Comment.objects.filter(product_id=id)
+    context = {"urun": urun, "images": images, "comments": comments}
     return render(request, 'urun_detay.html', context)
 
 
@@ -36,12 +35,12 @@ def search(request):
             query = form.cleaned_data['query']
             results = Product.objects.filter(title__icontains=query)
             context = {"urunler": results}
-            return render(request, 'product_search.html',context)
+            return render(request, 'product_search.html', context)
     return HttpResponseRedirect('/')
 
 
 def addComment(request, id):
-    url = request.META.get('HTTP_REFERER') # geldiğimiz sayfanın url bilgisini verir
+    url = request.META.get('HTTP_REFERER')  # geldiğimiz sayfanın url bilgisini verir
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():

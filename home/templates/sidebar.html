@@ -79,8 +79,20 @@
                             <a href="/iletisim" class="nav-item nav-link">İletişim</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            {% if user.id is not None %}
+                              <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Merhaba {{ user.username }}</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="/user" class="dropdown-item">Profil Sayfam</a>
+                                    <a href="/user/myorders" class="dropdown-item">Siparişlerim</a>
+                                    <a href="/user/logout" class="dropdown-item">Çıkış</a>
+
+                                </div>
+                            </div>
+                                {% else %}
+                            <a href="/user/login" class="nav-item nav-link">Login</a>
+                            <a href="/user/register" class="nav-item nav-link">Register</a>
+                            {% endif %}
                         </div>
                     </div>
                 </nav>
