@@ -120,3 +120,12 @@ def shopcart(request):
                }
     return render(request, 'shopcart_products.html', context)
 
+@login_required(login_url='/login')  # Check login
+def deletefromcart(request, id):
+    url = request.META.get('HTTP_REFERER')  # get last url
+    ShopCart.objects.filter(id=id).delete()
+    current_user = request.user  # Access User Session information
+    messages.success(request, "Your item deleted form Shopcart.")
+    request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
+    return HttpResponseRedirect(url)
+

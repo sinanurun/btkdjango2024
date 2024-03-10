@@ -1,0 +1,48 @@
+{% extends 'homebase.html' %}
+{% block title %} {{ setting.title }}{% endblock %}
+{% block description %} index description {% endblock %}
+{% block keywords %} index keywords {% endblock %}
+
+<!-- aşağı kısım sonradan eklenecek -->
+{% block head %} <link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url }}" >  {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %}  {% endblock %}
+
+{% block body %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Checkout</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+  <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+
+
+                            <h3 class="title">Order Complated</h3>
+
+                        <hr>
+                        <h2>Dear  {{ user.first_name }} {{  user.last_name }}</h2>
+                        <hr>
+                        <h3>Your order is completed</h3>
+            <hr>
+                        <h3>Order Code : {{ ordercode }}</h3>
+            <hr>
+                        <h3>Thank You</h3>
+                        <hr>
+
+                    </div>
+
+        </div>
+
+
+{% endblock %}
+
