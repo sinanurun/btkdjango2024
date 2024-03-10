@@ -1,0 +1,73 @@
+{% extends 'homebase.html' %}
+{% block title %} {{ setting.title }}{% endblock %}
+{% block description %} index description {% endblock %}
+{% block keywords %} index keywords {% endblock %}
+
+<!-- aşağı kısım sonradan eklenecek -->
+{% block head %} <link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url }}" >  {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %}  {% endblock %}
+
+{% block body %}
+
+        <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Contact Us</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="/">Anasayfa</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Kullanıcı Profili</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            {% include 'user_panel.html' %}
+                       <div class="col-lg-9 table-responsive mb-5">
+<div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">Order List</h3>
+                        </div>
+                        <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Sipariş Kodu </th>
+                                <th class="text-left">First Name </th>
+                                <th class="text-left">Last Name </th>
+                                <th class="text-left">Total </th>
+                                <th class="text-left">Status </th>
+                                <th class="text-left">Date </th>
+                                <th class="text-left">Detail </th>
+                            </tr>
+                            {% for rs in orders %}
+                                <tr>
+                                    <td class="text-left">{{ rs.code}} </td>
+                                    <td class="text-left">{{ rs.first_name}} </td>
+                                    <td class="text-left">{{ rs.last_name}} </td>
+                                    <td class="text-left">{{ rs.total}} </td>
+                                    <td class="text-left">{{ rs.status}} </td>
+                                    <td class="text-left">{{ rs.create_at}} </td>
+                                    <td class="text-left"><a class="primary-btn" href="/user/orderdetail/{{ rs.id }}"> Detail </a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+
+
+
+ {% endblock %}
+
+

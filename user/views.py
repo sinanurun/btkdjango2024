@@ -5,6 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+from order.models import Order, OrderProduct
 from product.models import Comment
 from user.forms import LoginForm, RegisterForm, UserProfileForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
@@ -118,3 +119,31 @@ def user_deletecomment(request, id):
     except Exception:
         messages.warning(request, 'Mesajınız Silinememiştir {}'.format(Exception))
     return HttpResponseRedirect('/user/mycomments')
+
+
+@login_required(login_url='/login')  # Check login
+def user_orders(request):
+    current_user = request.user
+    orders = Order.objects.filter(user_id=current_user.id)
+    context = {'orders': orders, }
+    return render(request, 'user_orders.html', context)
+@login_required(login_url='/login')  # Check login
+def user_orderdetail(request, id):
+    current_user = request.user
+    order = Order.objects.get(user_id=current_user.id, id=id)
+    orderitems = OrderProduct.objects.filter(order_id=id)
+    context = {'order': order, 'orderitems': orderitems}
+    return render(request, 'user_order_detail.html', context)
+@login_required(login_url='/login')  # Check login
+def user_order_product(request):
+    current_user = request.user
+    order_product = OrderProduct.objects.filter(user_id=current_user.id).order_by('-id')
+    context = {'order_product': order_product}
+    return render(request, 'user_order_products.html', context)
+@login_required(login_url='/login')  # Check login
+def user_order_product_detail(request, id, oid):
+    current_user = request.user
+    order = Order.objects.get(user_id=current_user.id, id=oid)
+    orderitems = OrderProduct.objects.filter(id=id, user_id=current_user.id)
+    context = {'order': order, 'orderitems': orderitems, }
+    return render(request, 'user_order_detail.html', context)

@@ -154,7 +154,7 @@ def orderproduct(request):
             data.user_id = current_user.id
             data.total = total
             data.ip = request.META.get('REMOTE_ADDR')
-            ordercode = get_random_string().upper()  # random cod
+            ordercode = get_random_string(5).upper()  # random cod
             data.code = ordercode
             data.save()  #
 
@@ -175,13 +175,14 @@ def orderproduct(request):
             ShopCart.objects.filter(user_id=current_user.id).delete()  # Clear & Delete shopcart
             request.session['cart_items'] = 0
             messages.success(request, "Your Order has been completed. Thank you ")
-            return render(request, 'order_completed.html', {'ordercode': ordercode, 'category': category})
+            return render(request, 'order_completed.html', {'ordercode': ordercode})
         else:
             messages.warning(request, form.errors)
             return HttpResponseRedirect("/order/orderproduct")
 
+    user_instance = current_user
+    profile = UserProfile.objects.get(user=user_instance)
     form = OrderForm()
-    profile = UserProfile.objects.get(user_id=current_user.id)
     context = {'shopcart': shopcart,
                'total': total,
                'form': form,

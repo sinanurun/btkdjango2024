@@ -26,6 +26,7 @@
 <form action="" method="post">
 {% csrf_token %}
     <!-- Checkout Start -->
+
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
 
@@ -43,11 +44,11 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" value="{{ user.email }}">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" value="{{ profile.phone }}">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 1</label>
