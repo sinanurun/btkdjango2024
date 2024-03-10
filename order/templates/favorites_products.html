@@ -33,6 +33,7 @@
                     <thead class="bg-secondary text-dark">
                     <tr>
                         <th>Products</th>
+                        <th>Add Cart</th>
                         <th>Remove</th>
                     </tr>
                     </thead>
@@ -45,6 +46,11 @@
                                     <img src="{{ fav.product.image.url }}" alt=""
                                                           style="width: 50px;">
                                 {{ fav }}</a></td>
+                            <td>
+                                <a href="/order/addtocart/{{ fav.id }}">
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></button>
+                                </a>
+                            </td>
                             <td>
                                 <a href="/order/delfavorite/{{ fav.id }}">
                                     <button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>

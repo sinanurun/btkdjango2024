@@ -1,0 +1,83 @@
+{% extends 'homebase.html' %}
+{% block title %} {{ setting.title }}{% endblock %}
+{% block description %} index description {% endblock %}
+{% block keywords %} index keywords {% endblock %}
+
+<!-- aşağı kısım sonradan eklenecek -->
+{% block head %} <link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url }}" >  {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %}  {% endblock %}
+
+{% block body %}
+
+        <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Kullanıcı Sayfası</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="/">Anasayfa</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Kullanıcı Ürünleri</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            {% include 'user_panel.html' %}
+                       <div class="col-lg-9 table-responsive mb-5">
+<div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">User Products List</h3>
+                        </div>
+                        <table class="shopping-cart-table table">
+                        <tr>
+                            <th class="text-left">
+                                <a href="/user/user_product_add" class="primary-btn">Add New Product</a>
+                            </th>
+                        </tr>
+                            <tr>
+                                <th class="text-left">Urun Adı </th>
+                                <th class="text-left">Kategori </th>
+                                <th class="text-left">Fiyat </th>
+                                <th class="text-left">Resim </th>
+                                <th class="text-left">Status </th>
+                                <th class="text-left">Update </th>
+                                <th class="text-left">Delete </th>
+                            </tr>
+                            {% for rs in products %}
+                                <tr>
+                                    <td class="text-left"><a href="/product/{{ rs.id}}/{{ rs.slug }}">{{ rs}}</a>  </td>
+                                    <td class="text-left">{{ rs.category}} </td>
+                                    <td class="text-left">{{ rs.price}} </td>
+                                    <td class="text-left">{{ rs.image_tag}} </td>
+                                    <td class="text-left">{{ rs.status}} </td>
+                                    <td class="text-left"><a class="primary-btn" href="/user/update_product/{{ rs.id }}"> Update </a></td>
+                                    <td class="text-left">
+                                    <td class="text-left">
+                                        <a class="primary-btn" href="/user/delete_product/{{ rs.id }}"> Delete </a>
+{#                                        <a class="primary-btn" href="{% url 'user:user_delete_product' rs.id %}"> Delete </a>#}
+{#                                        <a class="primary-btn" href="{% url 'user_delete_product' rs.id %}"> Delete </a>#}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+
+
+
+ {% endblock %}
+
+
