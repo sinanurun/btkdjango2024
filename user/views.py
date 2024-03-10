@@ -179,7 +179,8 @@ def user_product_add(request):
             data.keywords = form.cleaned_data['keywords']
             data.description = form.cleaned_data['description']
             data.image = form.cleaned_data['image']
-            data.slug = slugify(form.cleaned_data['title'])
+            # sonid = Product.objects.last().id
+            # data.slug = slugify(str(sonid+1)+"_"+form.cleaned_data['title'])
             data.save()
             messages.success(request, "Your Product is Added")
             return HttpResponseRedirect('/user/myproducts')
