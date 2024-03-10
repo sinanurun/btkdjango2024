@@ -59,9 +59,13 @@
                     <span class="badge">0</span>
                 </a>
                 {% endif %}
-                <a href="" class="btn border">
+                <a href="/order/shopcart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">{% if request.session.cart_items > 0 %}
+                    {{ request.session.cart_items }}
+                        {% else %}
+                        0
+                    {% endif %} </span>
                 </a>
             </div>
         </div>
