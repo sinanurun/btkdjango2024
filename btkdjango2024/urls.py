@@ -35,7 +35,7 @@ urlpatterns = [
                   path("referanslar", home_views.referanslar, name="referanslar"),
                   path("iletisim", home_views.iletisim, name="iletisim"),
 
-                  path("api", include('projectapi.urls')),
+                  path("api/", include('projectapi.urls')),
 
                   path('admin/', admin.site.urls),
                   path('ckeditor/', include('ckeditor_uploader.urls')),
