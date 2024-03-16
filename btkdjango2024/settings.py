@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     "product.apps.ProductConfig",
     'user.apps.UserConfig',
     'order.apps.OrderConfig',
+    'projectapi.apps.ProjectapiConfig',
 #     eklenti listesi
     'ckeditor',
     'ckeditor_uploader',
     'mptt',
     'autoslug',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
