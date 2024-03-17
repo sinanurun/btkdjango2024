@@ -22,7 +22,7 @@ import home.views as home_views
 import product.views as product_views
 from btkdjango2024 import settings
 
-urlpatterns = [
+urlpatterns = ([
                   path('', include('home.urls')),
                   path('home/', include('home.urls')),
                   path('search/', product_views.search, name='search'),
@@ -39,4 +39,5 @@ urlpatterns = [
 
                   path('admin/', admin.site.urls),
                   path('ckeditor/', include('ckeditor_uploader.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+
